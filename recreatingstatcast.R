@@ -1774,10 +1774,6 @@ ui <- fluidPage(
     widths = c(2,10),
     tabPanel(
       "Pitch Highlighter",
-      fluidRow(
-        column(4,
-               uiOutput('pitch_counter')
-               ),
         column(4,
                h3('Pitch Highlighter'),
                selectInput(inputId = 'player_select',
@@ -1790,8 +1786,12 @@ ui <- fluidPage(
                            selected = '')),
         column(4,
                uiOutput('filtering_plot') #this uioutput loads more selective filtering when the player is selected
-               )
-        ),
+               ),
+      column(4,
+             br(),
+             br(),
+             uiOutput('pitch_counter')
+      ),
       fluidRow(
         column(12,
                tableOutput("test_table"), #used for testing data
@@ -2478,7 +2478,7 @@ server <- function(input, output, session) {
   output$create_pitch_stuff <- renderTable({
     if (!is.null(new_stuff_df())) {
       new_stuff_df() %>%
-        select(`Stuff+` = stuff_plus)
+        dplyr::select(`Stuff+` = stuff_plus)
     }
   })
   
