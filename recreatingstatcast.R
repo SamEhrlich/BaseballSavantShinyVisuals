@@ -21,7 +21,7 @@ library(Boruta)
 # statcast_df <- statcast_search(start_date = "2023-03-01", end_date = "2023-12-01")
 # 
 # #load in data from pybaseball request
-statcast_df <- read.csv('/Users/sam/Desktop/personal/NickWanBootcamp/data.csv')
+statcast_df <- read.csv('/Users/sam/Desktop/personal/NickWanBootcamp/ShinyStatcast/data.csv')
 
 # unique(statcast_df$pitch_type)
 
@@ -99,9 +99,9 @@ statcast_df <- statcast_df %>%
 #get all players info to join to the player names to statcast data
 # mlb_players <- baseballr::chadwick_player_lu()
 
-# write.csv(mlb_players,'/Users/sam/Desktop/personal/NickWanBootcamp/player_ids.csv', row.names = FALSE)
+# write.csv(mlb_players,'/Users/sam/Desktop/personal/NickWanBootcamp/ShinyStatcast/player_ids.csv', row.names = FALSE)
 
-mlb_players <- read.csv('/Users/sam/Desktop/personal/NickWanBootcamp/player_ids.csv')
+mlb_players <- read.csv('/Users/sam/Desktop/personal/NickWanBootcamp/ShinyStatcast/player_ids.csv')
 
 #create a full name column
 mlb_players <- mlb_players %>%
@@ -201,7 +201,7 @@ statcast_stuff_df <- statcast_stuff_df %>%
 
 stuff_predictions <- function(df, pitch_type) {
   
-  rf_model <-readRDS(file.path('/Users/sam/Desktop/personal/NickWanBootcamp/',paste0('fit_rf_',pitch_type,'.rds')))
+  rf_model <-readRDS(file.path('/Users/sam/Desktop/personal/NickWanBootcamp/ShinyStatcast/',paste0('fit_rf_',pitch_type,'.rds')))
   
   prediction_probs <- predict(rf_model, type = "prob")
   
@@ -745,10 +745,10 @@ fit_rf_fb <- randomForest::randomForest(linear_weights_above_average ~ pfx_x_adj
 min(fit_rf_fb$mse)
 
 #save the best model
-saveRDS(fit_rf_fb, file = file.path('/Users/sam/Desktop/personal/NickWanBootcamp/first_rf_fb_stuff.rds'))
+saveRDS(fit_rf_fb, file = file.path('/Users/sam/Desktop/personal/NickWanBootcamp/ShinyStatcast/first_rf_fb_stuff.rds'))
 
 #load model 
-fit_rf_fb <- readRDS(file.path('/Users/sam/Desktop/personal/NickWanBootcamp/first_rf_fb_stuff.rds'))
+fit_rf_fb <- readRDS(file.path('/Users/sam/Desktop/personal/NickWanBootcamp/ShinyStatcast/first_rf_fb_stuff.rds'))
 
 fit_rf_fb$predicted
 
@@ -789,10 +789,10 @@ fit_rf_fc <- randomForest::randomForest(linear_weights_above_average ~ pfx_x_adj
 fit_rf_fc
 
 #save the best model
-saveRDS(fit_rf_fc, file = file.path('/Users/sam/Desktop/personal/NickWanBootcamp/first_rf_fc_stuff.rds'))
+saveRDS(fit_rf_fc, file = file.path('/Users/sam/Desktop/personal/NickWanBootcamp/ShinyStatcast/first_rf_fc_stuff.rds'))
 
 #load model 
-fit_rf_fc <- readRDS(file.path('/Users/sam/Desktop/personal/NickWanBootcamp/first_rf_fc_stuff.rds'))
+fit_rf_fc <- readRDS(file.path('/Users/sam/Desktop/personal/NickWanBootcamp/ShinyStatcast/first_rf_fc_stuff.rds'))
 
 fit_rf_fc$importance
 
@@ -832,10 +832,10 @@ fit_rf_sl <- randomForest::randomForest(linear_weights_above_average ~ pfx_x_adj
 fit_rf_sl
 
 #save the best model
-saveRDS(fit_rf_sl, file = file.path('/Users/sam/Desktop/personal/NickWanBootcamp/first_rf_sl_stuff.rds'))
+saveRDS(fit_rf_sl, file = file.path('/Users/sam/Desktop/personal/NickWanBootcamp/ShinyStatcast/first_rf_sl_stuff.rds'))
 
 #load model 
-fit_rf_sl <- readRDS(file.path('/Users/sam/Desktop/personal/NickWanBootcamp/first_rf_sl_stuff.rds'))
+fit_rf_sl <- readRDS(file.path('/Users/sam/Desktop/personal/NickWanBootcamp/ShinyStatcast/first_rf_sl_stuff.rds'))
 
 fit_rf_sl$importance
 
@@ -872,10 +872,10 @@ fit_rf_si <- randomForest::randomForest(linear_weights_above_average ~ pfx_x_adj
 fit_rf_si
 
 #save the best model
-saveRDS(fit_rf_si, file = file.path('/Users/sam/Desktop/personal/NickWanBootcamp/first_rf_si_stuff.rds'))
+saveRDS(fit_rf_si, file = file.path('/Users/sam/Desktop/personal/NickWanBootcamp/ShinyStatcast/first_rf_si_stuff.rds'))
 
 #load model 
-fit_rf_si <- readRDS(file.path('/Users/sam/Desktop/personal/NickWanBootcamp/first_rf_si_stuff.rds'))
+fit_rf_si <- readRDS(file.path('/Users/sam/Desktop/personal/NickWanBootcamp/ShinyStatcast/first_rf_si_stuff.rds'))
 
 fit_rf_si$importance
 
@@ -912,10 +912,10 @@ fit_rf_cu <- randomForest::randomForest(linear_weights_above_average ~ pfx_x_adj
 fit_rf_cu
 
 #save the best model
-saveRDS(fit_rf_cu, file = file.path('/Users/sam/Desktop/personal/NickWanBootcamp/first_rf_cu_stuff.rds'))
+saveRDS(fit_rf_cu, file = file.path('/Users/sam/Desktop/personal/NickWanBootcamp/ShinyStatcast/first_rf_cu_stuff.rds'))
 
 #load model 
-fit_rf_cu <- readRDS(file.path('/Users/sam/Desktop/personal/NickWanBootcamp/first_rf_cu_stuff.rds'))
+fit_rf_cu <- readRDS(file.path('/Users/sam/Desktop/personal/NickWanBootcamp/ShinyStatcast/first_rf_cu_stuff.rds'))
 
 fit_rf_cu$importance
 
@@ -952,10 +952,10 @@ fit_rf_ch <- randomForest::randomForest(linear_weights_above_average ~ pfx_x_adj
 fit_rf_ch
 
 #save the best model
-saveRDS(fit_rf_ch, file = file.path('/Users/sam/Desktop/personal/NickWanBootcamp/first_rf_ch_stuff.rds'))
+saveRDS(fit_rf_ch, file = file.path('/Users/sam/Desktop/personal/NickWanBootcamp/ShinyStatcast/first_rf_ch_stuff.rds'))
 
 #load model 
-fit_rf_ch <- readRDS(file.path('/Users/sam/Desktop/personal/NickWanBootcamp/first_rf_ch_stuff.rds'))
+fit_rf_ch <- readRDS(file.path('/Users/sam/Desktop/personal/NickWanBootcamp/ShinyStatcast/first_rf_ch_stuff.rds'))
 
 fit_rf_ch$importance
 
@@ -992,10 +992,10 @@ fit_rf_fs <- randomForest::randomForest(linear_weights_above_average ~ pfx_x_adj
 fit_rf_fs
 
 #save the best model
-saveRDS(fit_rf_fs, file = file.path('/Users/sam/Desktop/personal/NickWanBootcamp/first_rf_fs_stuff.rds'))
+saveRDS(fit_rf_fs, file = file.path('/Users/sam/Desktop/personal/NickWanBootcamp/ShinyStatcast/first_rf_fs_stuff.rds'))
 
 #load model 
-fit_rf_fs <- readRDS(file.path('/Users/sam/Desktop/personal/NickWanBootcamp/first_rf_fs_stuff.rds'))
+fit_rf_fs <- readRDS(file.path('/Users/sam/Desktop/personal/NickWanBootcamp/ShinyStatcast/first_rf_fs_stuff.rds'))
 
 fit_rf_fs$importance
 
@@ -1032,10 +1032,10 @@ fit_rf_st <- randomForest::randomForest(linear_weights_above_average ~ pfx_x_adj
 fit_rf_st
 
 #save the best model
-saveRDS(fit_rf_st, file = file.path('/Users/sam/Desktop/personal/NickWanBootcamp/first_rf_st_stuff.rds'))
+saveRDS(fit_rf_st, file = file.path('/Users/sam/Desktop/personal/NickWanBootcamp/ShinyStatcast/first_rf_st_stuff.rds'))
 
 #load model 
-fit_rf_st <- readRDS(file.path('/Users/sam/Desktop/personal/NickWanBootcamp/first_rf_st_stuff.rds'))
+fit_rf_st <- readRDS(file.path('/Users/sam/Desktop/personal/NickWanBootcamp/ShinyStatcast/first_rf_st_stuff.rds'))
 
 fit_rf_st$importance
 
@@ -1072,10 +1072,10 @@ fit_rf_kc <- randomForest::randomForest(linear_weights_above_average ~ pfx_x_adj
 fit_rf_kc
 
 #save the best model
-saveRDS(fit_rf_kc, file = file.path('/Users/sam/Desktop/personal/NickWanBootcamp/first_rf_kc_stuff.rds'))
+saveRDS(fit_rf_kc, file = file.path('/Users/sam/Desktop/personal/NickWanBootcamp/ShinyStatcast/first_rf_kc_stuff.rds'))
 
 #load model 
-fit_rf_kc <- readRDS(file.path('/Users/sam/Desktop/personal/NickWanBootcamp/first_rf_kc_stuff.rds'))
+fit_rf_kc <- readRDS(file.path('/Users/sam/Desktop/personal/NickWanBootcamp/ShinyStatcast/first_rf_kc_stuff.rds'))
 
 fit_rf_kc$importance
 
@@ -1298,7 +1298,7 @@ fit_rf_fb_manual <- randomForest::randomForest(linear_weights_above_average_manu
 min(fit_rf_fb_manual$mse)
 
 #save the best model
-saveRDS(fit_rf_fb_manual, file = file.path('/Users/sam/Desktop/personal/NickWanBootcamp/first_rf_fb_manual_stuff.rds'))
+saveRDS(fit_rf_fb_manual, file = file.path('/Users/sam/Desktop/personal/NickWanBootcamp/ShinyStatcast/first_rf_fb_manual_stuff.rds'))
 
 four_seam_fastball_stuff_df_manual_results <- four_seam_fastball_stuff_df_manual %>%
   mutate(preds = fit_rf_fb_manual$predicted)
@@ -1554,10 +1554,10 @@ fastball_pitcher_stuff <- four_seam_fastball_stuff_df_ %>%
   distinct()
 
 #save the model
-saveRDS(fit_rf_fb, file = file.path('/Users/sam/Desktop/personal/NickWanBootcamp/rf_fb_stuff.rds'))
+saveRDS(fit_rf_fb, file = file.path('/Users/sam/Desktop/personal/NickWanBootcamp/ShinyStatcast/rf_fb_stuff.rds'))
 
 #load model 
-fit_rf_fb <- readRDS(file.path('/Users/sam/Desktop/personal/NickWanBootcamp/first_rf_fb_stuff.rds'))
+fit_rf_fb <- readRDS(file.path('/Users/sam/Desktop/personal/NickWanBootcamp/ShinyStatcast/first_rf_fb_stuff.rds'))
 
 #create a function to build the other stuff models by inputting a list of pitch types and the df - filter the df for the given pitch type and build the model
 
@@ -1587,7 +1587,7 @@ stuff_model_creation <- function(df, pitch_type) {
                                             dplyr::select(-c('pitch_type_name','pitcher_name','pitcherid')))
   
   
-  saveRDS(fit_rf_pitch_type, file = file.path('/Users/sam/Desktop/personal/NickWanBootcamp/', paste0('fit_rf_',pitch_type,'.rds')))
+  saveRDS(fit_rf_pitch_type, file = file.path('/Users/sam/Desktop/personal/NickWanBootcamp/ShinyStatcast/', paste0('fit_rf_',pitch_type,'.rds')))
   
   
 }
@@ -1596,7 +1596,7 @@ stuff_model_creation <- function(df, pitch_type) {
 stuff_model_creation(statcast_stuff_df, 'Slider')
 
 #load model 
-fit_rf_slider <- readRDS(file.path('/Users/sam/Desktop/personal/NickWanBootcamp/fit_rf_Slider.rds'))
+fit_rf_slider <- readRDS(file.path('/Users/sam/Desktop/personal/NickWanBootcamp/ShinyStatcast/fit_rf_Slider.rds'))
 
 prediction_probs <- predict(fit_rf_slider, type = "prob")
 
@@ -1635,7 +1635,7 @@ for (i in unique(statcast_stuff_df$pitch_type_name)){
 }
 
 #load model 
-fit_rf_changeup <- readRDS(file.path('/Users/sam/Desktop/personal/NickWanBootcamp/fit_rf_Changeup.rds'))
+fit_rf_changeup <- readRDS(file.path('/Users/sam/Desktop/personal/NickWanBootcamp/ShinyStatcast/fit_rf_Changeup.rds'))
 
 prediction_probs <- predict(fit_rf_changeup, type = "prob")
 
@@ -1665,7 +1665,7 @@ changeup_pitcher_stuff <- changeup_stuff_df %>%
 
 stuff_predictions <- function(df, pitch_type) {
   
-  rf_model <-readRDS(file.path('/Users/sam/Desktop/personal/NickWanBootcamp/',paste0('fit_rf_',pitch_type,'.rds')))
+  rf_model <-readRDS(file.path('/Users/sam/Desktop/personal/NickWanBootcamp/ShinyStatcast/',paste0('fit_rf_',pitch_type,'.rds')))
   
   prediction_probs <- predict(rf_model, type = "prob")
   
@@ -2454,7 +2454,7 @@ server <- function(input, output, session) {
     create_pitch_type_store(pitch_type_name)
     create_pitch_df_store(new_pitch)
 
-    rf_model <-readRDS(file.path('/Users/sam/Desktop/personal/NickWanBootcamp/',paste0('fit_rf_',create_pitch_type_store(),'.rds')))
+    rf_model <-readRDS(file.path('/Users/sam/Desktop/personal/NickWanBootcamp/ShinyStatcast/',paste0('fit_rf_',create_pitch_type_store(),'.rds')))
 
     prediction_probs <- predict(rf_model, type = "prob")
 
